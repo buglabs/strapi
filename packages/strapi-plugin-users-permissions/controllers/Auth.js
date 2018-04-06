@@ -55,7 +55,7 @@ module.exports = {
         return ctx.badRequest(null, ctx.request.admin ? [{ messages: [{ id: 'Auth.form.error.invalid' }] }] : 'Identifier or password invalid.');
       }
 
-      if (user.role.type !== 'root' && ctx.request.admin) {
+      if ((user.role.type !== 'root' && user.role.type !== 'authenticated') && ctx.request.admin) {
         return ctx.badRequest(null, ctx.request.admin ? [{ messages: [{ id: 'Auth.form.error.noAdminAccess' }] }] : `You're not an administrator.`);
       }
 

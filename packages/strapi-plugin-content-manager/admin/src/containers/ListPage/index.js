@@ -100,7 +100,7 @@ export class ListPage extends React.Component {
       get(this.props.schema, ['plugins', this.getSource(), this.getCurrentModelName()]);
     const tableHeaders = map(currentSchema.list, value => ({
       name: value,
-      label: currentSchema.fields[value].label,
+      label: currentSchema.fields[value].alias || currentSchema.fields[value].label,
       type: currentSchema.fields[value].type,
     }));
 
@@ -192,7 +192,7 @@ export class ListPage extends React.Component {
       {
         label: 'content-manager.containers.List.addAnEntry',
         labelValues: {
-          entity: capitalize(this.props.match.params.slug) || 'Content Manager',
+          entity: this.getCurrentModel().info.alias || capitalize(this.getCurrentModelName()) || 'Content Manager',
         },
         kind: 'primaryAddShape',
         onClick: () =>
@@ -220,7 +220,8 @@ export class ListPage extends React.Component {
               },
             }}
             title={{
-              id: listPage.currentModel || 'Content Manager',
+              id: (this.getCurrentModel().info.alias || this.getCurrentModelName()+'s'),            
+//               id: 'Database Manager - ' + (this.getCurrentModel().info.alias || this.getCurrentModelName()),
             }}
           />
           <div className={cn('row', styles.row)}>

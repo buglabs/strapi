@@ -9,11 +9,11 @@ const bootstrap = (plugin) => new Promise((resolve, reject) => {
       // Add Users to Content Types section.
       plugin.leftMenuSections.push({
         links: [{
-          label: 'Users',
+          label: 'ITG Portal Users',
           destination: 'user',
           plugin: 'content-manager',
         }],
-        name: 'Content Types',
+        name: 'Database Manager',
       });
 
       return resolve(plugin);

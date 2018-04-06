@@ -28,9 +28,9 @@ export const generateMenu = function () {
     .then(response => generateSchema(response))
     .then(displayedModels => {
       return [{
-        name: 'Content Types',
+        name: 'Database Manager',
         links: map(omit(displayedModels, 'plugins'), (model, key) => ({
-          label: model.labelPlural || model.label || key,
+          label: model.alias || model.labelPlural || model.label || key,
           destination: key,
         })),
       }];

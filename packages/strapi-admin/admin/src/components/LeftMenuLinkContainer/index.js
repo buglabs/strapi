@@ -13,6 +13,8 @@ import LeftMenuLink from 'components/LeftMenuLink';
 
 import styles from './styles.scss';
 import messages from './messages.json';
+import auth from 'utils/auth';
+
 
 function LeftMenuLinkContainer({ plugins }) {
   const pluginsObject = plugins.toJS();
@@ -65,17 +67,20 @@ function LeftMenuLinkContainer({ plugins }) {
         <FormattedMessage {...messages.noPluginsInstalled} />.
       </li>
     );
+    
+  
+  const hideIfNotAdminClass = (auth.getUserInfo() && auth.getUserInfo().role.type === 'root') ? '' : 'd-none';
 
   return (
     <div className={styles.leftMenuLinkContainer}>
       {linkSections}
-      <div>
+      <div className={hideIfNotAdminClass}>
         <p className={styles.title}><FormattedMessage {...messages.plugins} /></p>
         <ul className={styles.list}>
           {pluginsLinks}
         </ul>
       </div>
-      <div>
+      <div className={hideIfNotAdminClass}>
         <p className={styles.title}><FormattedMessage {...messages.general} /></p>
         <ul className={styles.list}>
           <LeftMenuLink

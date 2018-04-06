@@ -19,6 +19,7 @@ const generateSchema = (responses) => {
       label: upperFirst(name),
       labelPlural: upperFirst(pluralize(name)),
       orm: model.orm || 'mongoose',
+      alias: model.info.alias || null
     };
 
     // Fields (non relation)
@@ -28,6 +29,7 @@ const generateSchema = (responses) => {
       label: upperFirst(attribute),
       description: '',
       type: value.type || 'string',
+      alias: value.alias || null,
     }));
 
     // Select fields displayed in list view

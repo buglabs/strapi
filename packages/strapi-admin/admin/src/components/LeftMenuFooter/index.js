@@ -17,7 +17,6 @@ class LeftMenuFooter extends React.Component { // eslint-disable-line react/pref
   render() {
     return (
       <div className={styles.leftMenuFooter}>
-        <FormattedMessage {...messages.poweredBy} /> <a href="http://strapi.io" target="_blank">Strapi</a>
         <LocaleToggle />
       </div>
     );
